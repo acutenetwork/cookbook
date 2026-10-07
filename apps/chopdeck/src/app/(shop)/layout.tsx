@@ -16,11 +16,13 @@ const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_ACUTE_PUBLISHABLE_KEY;
  * listed on it and caps what any one call can ask for.
  */
 export default async function ShopLayout({ children }: { children: React.ReactNode }) {
+  // The session first: reading it is what makes these pages render per request
+  // rather than at build time, when no key is present by design.
+  const user = await requireUser();
   if (!PUBLISHABLE_KEY) {
     // Loud, not a dead Buy button.
     throw new Error("NEXT_PUBLIC_ACUTE_PUBLISHABLE_KEY is not set, so nobody can pay.");
   }
-  const user = await requireUser();
 
   return (
     <ClientAcuteProvider
