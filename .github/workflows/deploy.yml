@@ -1,0 +1,59 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Deploy ${{ matrix.app }} to Vercel
+    runs-on: ubuntu-latest
+    environment: production
+    strategy:
+      # One app failing to deploy must not cancel the others.
+      fail-fast: false
+      matrix:
+        # Each app is its own Vercel project, whose Root Directory is apps/<app>.
+        # Its environment variables live in Vercel and come down with `vercel pull`.
+        app: [chopdeck, rhemascry, raspbury]
+    concurrency:
+      group: deploy-${{ github.ref_name }}-${{ matrix.app }}
+      cancel-in-progress: false
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets[format('VERCEL_PROJECT_ID_{0}', matrix.app)] }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # A missing project id would let the CLI fall back to whatever it can infer,
+      # so stop before it gets the chance.
+      - name: Check project id
+        run: |
+          if [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "Secret VERCEL_PROJECT_ID_${{ matrix.app }} is not set." >&2
+            exit 1
+          fi
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      # Pulls the project's settings (including its Root Directory) and its
+      # production environment variables, so the build matches the deployment.
+      - name: Pull Vercel environment
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      # Built here, on Linux, and shipped prebuilt. It has to be Linux: the
+      # database driver ships a native binary per platform, and a build made on a
+      # Mac carries the Mac one, which fails every request in production.
+      - name: Build
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

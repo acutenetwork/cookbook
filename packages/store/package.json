@@ -1,0 +1,49 @@
+{
+  "name": "@cookbook/store",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./db": "./src/db/index.ts",
+    "./db/schema": "./src/db/schema.ts",
+    "./auth/session": "./src/auth/session.ts",
+    "./auth/actions": "./src/auth/actions.ts",
+    "./catalog": "./src/catalog.ts",
+    "./orders": "./src/orders.ts",
+    "./routes/*": "./src/routes/*.ts",
+    "./ui/*": "./src/ui/*.tsx"
+  },
+  "scripts": {
+    "lint": "eslint src scripts",
+    "type-check": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:seed": "tsx scripts/seed.ts"
+  },
+  "dependencies": {
+    "@cookbook/acute": "workspace:*",
+    "@cookbook/ui": "workspace:*",
+    "@libsql/client": "^0.17.4",
+    "drizzle-orm": "^0.45.2",
+    "lucide-react": "^1.28.0",
+    "zod": "^4.4.3"
+  },
+  "peerDependencies": {
+    "next": "16.2.12",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.10",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.12",
+    "next": "16.2.12",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "tsx": "^4.20.6",
+    "typescript": "^5"
+  }
+}

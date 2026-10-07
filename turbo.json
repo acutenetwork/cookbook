@@ -1,0 +1,27 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "tui",
+  "globalEnv": [
+    "NODE_ENV",
+    "ACUTE_API_BASE",
+    "ACUTE_API_KEY",
+    "ACUTE_WEBHOOK_SECRET",
+    "TURSO_DATABASE_URL",
+    "TURSO_DATABASE_SECRET",
+    "NEXT_PUBLIC_ACUTE_PUBLISHABLE_KEY",
+    "NEXT_PUBLIC_ACUTE_API_BASE"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "lint": {},
+    "type-check": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

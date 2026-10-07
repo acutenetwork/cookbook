@@ -1,0 +1,21 @@
+@import "@cookbook/ui/globals.css";
+
+/* The shared components live outside this app, so Tailwind is told to read them. */
+@source "../../../../packages/ui/src";
+@source "../../../../packages/store/src";
+
+/* Chopdeck: an appetising green. The shared base already is one, so this only
+ * names it, to keep the three apps' brand blocks side by side. */
+:root {
+  --primary: oklch(0.62 0.17 152);
+  --ring: oklch(0.62 0.17 152);
+  --accent: oklch(0.94 0.035 140);
+  --accent-foreground: oklch(0.28 0.05 152);
+}
+
+.dark {
+  --primary: oklch(0.7 0.16 152);
+  --ring: oklch(0.7 0.16 152);
+  --accent: oklch(0.31 0.04 152);
+  --accent-foreground: oklch(0.97 0.008 140);
+}

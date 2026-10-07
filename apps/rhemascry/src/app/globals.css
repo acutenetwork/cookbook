@@ -1,0 +1,22 @@
+@import "@cookbook/ui/globals.css";
+
+/* The shared components live outside this app, so Tailwind is told to read them. */
+@source "../../../../packages/ui/src";
+@source "../../../../packages/store/src";
+
+/* Rhemascry: a deep, warm indigo. */
+:root {
+  --primary: oklch(0.5 0.19 275);
+  --primary-foreground: oklch(0.99 0.01 275);
+  --ring: oklch(0.5 0.19 275);
+  --accent: oklch(0.95 0.03 275);
+  --accent-foreground: oklch(0.32 0.12 275);
+}
+
+.dark {
+  --primary: oklch(0.68 0.16 275);
+  --primary-foreground: oklch(0.16 0.03 275);
+  --ring: oklch(0.68 0.16 275);
+  --accent: oklch(0.3 0.06 275);
+  --accent-foreground: oklch(0.97 0.01 275);
+}
