@@ -15,7 +15,7 @@ const MENU = [
     id: "party-jollof-chicken",
     title: "Party jollof & chicken",
     description: "Smoky party jollof with a quarter grilled chicken and fried plantain.",
-    priceKobo: 350000,
+    priceKobo: 35000,
     category: "Rice",
     imageUrl:
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Jollof_rice_with_vegetable.jpg/960px-Jollof_rice_with_vegetable.jpg",
@@ -24,7 +24,7 @@ const MENU = [
     id: "egusi-soup-pounded-yam",
     title: "Egusi soup & pounded yam",
     description: "Thick egusi with assorted meat and stockfish, served with a wrap of pounded yam.",
-    priceKobo: 450000,
+    priceKobo: 45000,
     category: "Soups",
     imageUrl:
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Pot_of_Egusi_soup.jpg/960px-Pot_of_Egusi_soup.jpg",
@@ -33,7 +33,7 @@ const MENU = [
     id: "beef-suya-large",
     title: "Beef suya (large)",
     description: "Spicy grilled beef suya with yaji, sliced onions and tomatoes.",
-    priceKobo: 300000,
+    priceKobo: 30000,
     category: "Grills",
     imageUrl:
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Suya_Seller.jpg/960px-Suya_Seller.jpg",
@@ -42,7 +42,7 @@ const MENU = [
     id: "dodo-fried-plantain",
     title: "Dodo (fried plantain)",
     description: "Ripe plantain fried golden. A side, or a snack on its own.",
-    priceKobo: 150000,
+    priceKobo: 15000,
     category: "Snacks",
     imageUrl:
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Dodo_fried.jpg/960px-Dodo_fried.jpg",
@@ -51,7 +51,7 @@ const MENU = [
     id: "pounded-yam-vegetable-soup",
     title: "Pounded yam & vegetable soup",
     description: "Smooth pounded yam with efo riro, cooked with palm oil and assorted meat.",
-    priceKobo: 400000,
+    priceKobo: 40000,
     category: "Swallow",
     imageUrl:
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/POUNDED_YAM_%26_VEGETABLE_SOUP._A_native_delicacy_of_the_Yoruba_tribe_in_Nigeria%2C_West_Africa..jpg/960px-POUNDED_YAM_%26_VEGETABLE_SOUP._A_native_delicacy_of_the_Yoruba_tribe_in_Nigeria%2C_West_Africa..jpg",
@@ -60,7 +60,7 @@ const MENU = [
     id: "puff-puff-10-pieces",
     title: "Puff-puff (10 pieces)",
     description: "Soft, sweet, deep-fried dough balls, fresh out of the oil.",
-    priceKobo: 100000,
+    priceKobo: 10000,
     category: "Snacks",
     imageUrl:
       "https://upload.wikimedia.org/wikipedia/commons/a/a3/Nigerian-puff-puff-recipe_cropped.jpg",
@@ -69,7 +69,7 @@ const MENU = [
     id: "goat-meat-pepper-soup",
     title: "Goat meat pepper soup",
     description: "Peppery goat meat soup with uziza and scent leaves, served with bread.",
-    priceKobo: 350000,
+    priceKobo: 35000,
     category: "Soups",
     imageUrl:
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Goat_meat_pepper_soup_served_with_bread.jpg/960px-Goat_meat_pepper_soup_served_with_bread.jpg",
@@ -78,7 +78,7 @@ const MENU = [
     id: "chapman-large",
     title: "Chapman (large)",
     description: "The classic Nigerian cocktail: Fanta, Sprite, grenadine and bitters over ice.",
-    priceKobo: 150000,
+    priceKobo: 15000,
     category: "Drinks",
     imageUrl:
       "https://upload.wikimedia.org/wikipedia/commons/6/6b/Chapman_in_a_punch_bowl.jpg",
@@ -87,7 +87,7 @@ const MENU = [
     id: "moi-moi-stew",
     title: "Moi moi & stew",
     description: "Steamed bean pudding with egg and fish, served with tomato stew.",
-    priceKobo: 200000,
+    priceKobo: 20000,
     category: "Meals",
     imageUrl:
       "https://upload.wikimedia.org/wikipedia/commons/2/2e/Moi-moi_with_stew.jpg",
