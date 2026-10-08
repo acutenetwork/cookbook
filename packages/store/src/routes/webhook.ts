@@ -1,4 +1,4 @@
-import type { Payment } from "@cookbook/acute";
+import { getPayment } from "@cookbook/acute";
 import { verifyAcuteSignature, type AcuteEvent } from "@cookbook/acute/webhook";
 import { eq } from "drizzle-orm";
 
@@ -10,9 +10,10 @@ import { applyPayment, findOrderForPayment } from "../orders";
  * The receiver for every Acute event, at `/api/webhooks/acute`.
  *
  * Verify over the RAW body, skip an event already handled (delivery is
- * at-least-once), apply it, and only then record it. Recording last means a
- * failure part way through is retried by Acute instead of being remembered as
- * done; applying twice is harmless because order statuses only move forward.
+ * at-least-once), re-read the payment from Acute, apply it, and only then record
+ * the event. Recording last means a failure part way through is retried by Acute
+ * instead of being remembered as done; applying twice is harmless because order
+ * statuses only move forward.
  */
 export async function POST(request: Request) {
   const raw = await request.text();
@@ -37,8 +38,13 @@ export async function POST(request: Request) {
     .get();
   if (seen) return Response.json({ ok: true, duplicate: true });
 
-  if (event.type.startsWith("payment.")) {
-    const payment = event.data as unknown as Payment;
+  // The event names the payment; Acute is asked for the payment itself. A body is
+  // a snapshot of the moment it was sent, it can arrive out of order, and its
+  // shape is not the API's (`payment.expired` carries no amount, so an order
+  // could never be matched from it). The payment as it stands now is the truth.
+  const reference = event.data?.id;
+  if (event.type.startsWith("payment.") && reference) {
+    const payment = await getPayment(reference);
     const order = await findOrderForPayment(payment);
     if (order) await applyPayment(order, payment);
   }
