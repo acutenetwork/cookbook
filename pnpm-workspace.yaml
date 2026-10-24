@@ -6,5 +6,5 @@ allowBuilds:
   sharp: true
   unrs-resolver: true
 minimumReleaseAgeExclude:
-  - '@acutenetwork/core@0.0.2'
-  - '@acutenetwork/react@0.0.2'
+  - '@acutenetwork/core@0.0.3'
+  - '@acutenetwork/react@0.0.4'

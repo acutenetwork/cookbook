@@ -11,6 +11,9 @@ import { naira } from "@cookbook/ui/lib/format";
 
 import { openWidgetOrderAction, recordWidgetPaymentAction } from "@/lib/pay";
 
+/** The order could not be opened: a message for the buyer, not a bug. */
+class OrderError extends Error {}
+
 /**
  * Buy, in one tap: the order is opened and Acute's checkout appears over this
  * page. The buyer never leaves Chopdeck.
@@ -58,23 +61,26 @@ export function BuyButton({
   async function buy() {
     setOpening(true);
     try {
-      const opened = await openWidgetOrderAction(dishId);
-      if ("error" in opened) {
-        toast.error(opened.error);
-        return;
-      }
-      orderId.current = opened.orderId;
-      await acute.pay({
-        amount: opened.amountKobo,
-        description: opened.title,
-        customer: buyer,
-        metadata: { orderId: opened.orderId },
-        // One order, one payment: a second tap reopens the same account.
-        idempotencyKey: opened.orderId,
+      // The checkout is on screen from the tap; the order opens behind it, so
+      // the buyer is not left watching a spinner while our server works.
+      await acute.pay(async () => {
+        const opened = await openWidgetOrderAction(dishId);
+        if ("error" in opened) throw new OrderError(opened.error);
+        orderId.current = opened.orderId;
+        return {
+          amount: opened.amountKobo,
+          description: opened.title,
+          customer: buyer,
+          metadata: { orderId: opened.orderId },
+          // One order, one payment: a second tap reopens the same account.
+          idempotencyKey: opened.orderId,
+        };
       });
     } catch (error) {
+      // Our own refusal (sold out, signed out) puts the checkout away and lands here.
+      if (error instanceof OrderError) toast.error(error.message);
       // An Acute refusal already reached `onError`; anything else is ours to say.
-      if (!(error instanceof AcuteError)) toast.error("Could not open the payment. Try again.");
+      else if (!(error instanceof AcuteError)) toast.error("Could not open the payment. Try again.");
     } finally {
       setOpening(false);
     }

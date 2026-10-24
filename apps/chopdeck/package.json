@@ -10,7 +10,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@acutenetwork/react": "^0.0.2",
+    "@acutenetwork/react": "0.0.4",
     "@cookbook/acute": "workspace:*",
     "@cookbook/store": "workspace:*",
     "@cookbook/ui": "workspace:*",

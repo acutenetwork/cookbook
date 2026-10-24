@@ -18,8 +18,8 @@ importers:
   apps/chopdeck:
     dependencies:
       '@acutenetwork/react':
-        specifier: ^0.0.2
-        version: 0.0.2(react@19.2.4)
+        specifier: 0.0.4
+        version: 0.0.4(react@19.2.4)
       '@cookbook/acute':
         specifier: workspace:*
         version: link:../../packages/acute
@@ -313,11 +313,11 @@ importers:
 
 packages:
 
-  '@acutenetwork/core@0.0.2':
-    resolution: {integrity: sha512-anC0pRgnf9s4Ae4GIdUJLTpfd8SI1BdHJacDPsyJkUbZ5ty3TcwOAzpd9lkx8Y6lwUUowSjPc1TqeeeQzUqzfg==}
+  '@acutenetwork/core@0.0.3':
+    resolution: {integrity: sha512-9PixvHJhwqVaE5L9l6/VSYobDVDjPpiFkh2QvCBhnu7CxUz53QrNuXtOID9mNb0UXIPHyo07a8sIdAIepY/MKQ==}
 
-  '@acutenetwork/react@0.0.2':
-    resolution: {integrity: sha512-BdeEbvtRSDGLMcpFyU7CxeZvTi6iY91rX5KCSoeL4tj7Z8LF9NRv8t+28hfCUw6Q99oZ8uPZScr7M5VYSH1cPg==}
+  '@acutenetwork/react@0.0.4':
+    resolution: {integrity: sha512-q4ppZWpefBVp2QMyeMt5JupR65CZw+xQ8BEVqCKhZl9wepTmF//uR/kNbbNbTkm1+BaWFGefy27w2OpCPmPoWg==}
     peerDependencies:
       react: '>=18'
 
@@ -4620,11 +4620,11 @@ packages:
 
 snapshots:
 
-  '@acutenetwork/core@0.0.2': {}
+  '@acutenetwork/core@0.0.3': {}
 
-  '@acutenetwork/react@0.0.2(react@19.2.4)':
+  '@acutenetwork/react@0.0.4(react@19.2.4)':
     dependencies:
-      '@acutenetwork/core': 0.0.2
+      '@acutenetwork/core': 0.0.3
       react: 19.2.4
 
   '@alloc/quick-lru@5.3.0': {}
